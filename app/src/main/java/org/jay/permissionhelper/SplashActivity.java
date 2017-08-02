@@ -2,7 +2,6 @@ package org.jay.permissionhelper;
 
 import android.Manifest;
 import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -10,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -65,7 +63,7 @@ public class SplashActivity extends AppCompatActivity {
 
                     @Override
                     public void onDenied() {
-                        showTipDialog();
+                        PermissionHelper.showDeniedTipDialog(SplashActivity.this);
                         Toast.makeText(SplashActivity.this, "permission denied", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -78,24 +76,6 @@ public class SplashActivity extends AppCompatActivity {
         PermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    private void showTipDialog() {
-        new AlertDialog.Builder(SplashActivity.this)
-                .setTitle("Tips")
-                .setMessage("You have denied permission to locate, no permission to locate you can not recommend nearby sister, you look at the office.")
-                .setNegativeButton("ON", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-                })
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        gotoMiuiPermission();
-                    }
-                })
-                .show();
-    }
 
 
     private void goToMainActivity() {

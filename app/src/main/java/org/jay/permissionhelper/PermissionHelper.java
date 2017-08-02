@@ -3,12 +3,16 @@ package org.jay.permissionhelper;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.SparseArray;
 
 import java.util.ArrayList;
@@ -174,6 +178,39 @@ public class PermissionHelper {
             }
         }
         return null;
+    }
+
+    public static void goToAppDetailsSetting(Activity context) {
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= 9) {
+            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.fromParts("package", context.getPackageName(), null));
+        } else if (Build.VERSION.SDK_INT <= 8) {
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+            intent.putExtra("com.android.settings.ApplicationPkgName", context.getPackageName());
+        }
+        context.startActivity(intent);
+    }
+
+    public static void showDeniedTipDialog(final Activity context) {
+        new AlertDialog.Builder(context)
+                .setTitle("Tips")
+                .setMessage("You have denied permission to locate, no permission to locate you can not recommend nearby sister, you look at the office.")
+                .setNegativeButton("ON", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        context.finish();
+                    }
+                })
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goToAppDetailsSetting(context);
+                    }
+                })
+                .show();
     }
 
     private static int genRequestCode() {

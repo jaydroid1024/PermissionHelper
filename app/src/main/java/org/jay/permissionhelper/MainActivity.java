@@ -1,10 +1,6 @@
 package org.jay.permissionhelper;
 
 import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -54,20 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnOnclick(View view) {
-        goToAppSetting(this);
+        PermissionHelper.goToAppDetailsSetting(this);
     }
 
-    private void goToAppSetting(Context context) {
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (Build.VERSION.SDK_INT >= 9) {
-            intent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.fromParts("package", getPackageName(), null));
-        } else if (Build.VERSION.SDK_INT <= 8) {
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-            intent.putExtra("com.android.settings.ApplicationPkgName", getPackageName());
-        }
-        startActivity(intent);
-    }
 }
