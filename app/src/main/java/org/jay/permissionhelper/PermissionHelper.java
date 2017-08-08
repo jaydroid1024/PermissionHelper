@@ -204,7 +204,7 @@ public class PermissionHelper {
                         context.finish();
                     }
                 })
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("GRANT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         goToAppDetailsSetting(context);
