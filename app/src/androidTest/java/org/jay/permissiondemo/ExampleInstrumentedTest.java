@@ -1,4 +1,4 @@
-package org.jay.permissiondemo;
+package org.jay.permissionhelper;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("org.jay.permissiondemo", appContext.getPackageName());
+        assertEquals("org.jay.permissionhelper", appContext.getPackageName());
     }
 }

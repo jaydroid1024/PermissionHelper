@@ -8,20 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import org.jay.permissiondemo.R;
-
-/***
- * 特殊权限 组：
- CALENDAR	日历
- CAMERA		相机
- CONTACTS	联系人
- LOCATION	定位
- MICROPHONE	麦克相关，比如录音
- PHONE		手机状态
- SENSORS		传感器
- SMS		短信
- STORAGE		存储权限
- */
 public class MainActivity extends AppCompatActivity {
 
 

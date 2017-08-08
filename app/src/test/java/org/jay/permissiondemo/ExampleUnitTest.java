@@ -1,4 +1,4 @@
-package org.jay.permissiondemo;
+package org.jay.permissionhelper;
 
 import org.junit.Test;
 

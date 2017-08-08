@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PermissionDemo</string>
+    <string name="app_name">PermissionHelper</string>
     <string name="action_settings">Settings</string>
     <string name="copyright_">Copyright © 2017&#045;%d Jay</string>
 </resources>

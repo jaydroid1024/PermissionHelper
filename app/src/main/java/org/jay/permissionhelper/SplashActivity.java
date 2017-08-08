@@ -18,9 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.jay.permissiondemo.BuildConfig;
-import org.jay.permissiondemo.R;
-
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -49,7 +46,20 @@ public class SplashActivity extends AppCompatActivity {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         mTvCopyright.setText(getString(R.string.copyright_, year));
         requestPermissions();
+
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        requestPermissions();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     //1
     private void requestPermissions() {
         PermissionHelper
@@ -75,7 +85,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         PermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 
 
     private void goToMainActivity() {
